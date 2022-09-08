@@ -124,7 +124,8 @@ def recommend():
 @login_required
 def book():
     if request.method == 'GET':
-        with open('/test code/booksrecommendation/booksrecommender/app/static/books.json', 'r', encoding="utf8") as blog_file:
+        filename = os.path.join(app.static_folder, 'books.json')
+        with open(filename) as blog_file:
             book = json.load(blog_file)
     return render_template('book.html',book=book, title='Book')
 @app.route('/about')
