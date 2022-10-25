@@ -48,8 +48,6 @@ def login():
 @app.route('/home')
 @login_required
 def home():
-    print("User:::::",current_user.user_id)
-    form=updateEmail()
 
     available=False
     fileRating = os.path.join(app.static_folder, 'ratings.json')
