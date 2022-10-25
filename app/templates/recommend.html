@@ -29,14 +29,8 @@
           <li>
             <a href="{{url_for("recommend")}}" class="active">
               <i class='bx bxs-star'></i>
-                <span class="links_name">Recommend</span>
+                <span class="links_name">Rate</span>
             </a>
-            </li>
-            <li>
-                <a href="{{url_for('book')}}" class="active">
-                    <i class='bx bx-book' ></i>
-                    <span class="links_name">Books</span>
-                </a>
             </li>
             <li>
               <a href="{{url_for('account')}}" class="active">
@@ -59,7 +53,7 @@
         </ul>
         </div>
         
-    <div class="container" style="padding: 50px 150px;">
+    <div class="container" style="padding: 50px 50px; margin: 0 0 0 300px">
         {%with messages=get_flashed_messages(with_categories=true)%}
         {%if messages%}
              {%for category,message in messages%}
@@ -108,10 +102,57 @@
             </fieldset>
             <div class='form-group'>
               {{form.submit(class="btn btn-outline-info")}}
-
             </div>
+
           </form>
         </div>
+        <div>
+          <form action="{{url_for("home")}}">
+            <input class="btn btn-outline-info" type="submit" value="My Recommendations" >
+          </form>
+          
+        </div>
+
+        <div >
+          <table class="content-table" id="table" data-search='true' >
+              <tbody>
+                  <thead>
+                    <tr>
+                      <th data-field="book_id">Book Id</th>
+                      <th data-field="original_title">Title</th>
+                      <th data-field="genre">Genre</th>
+  
+                    </tr>
+                  </thead>
+              </tbody>   
+            </table>
+          <hr>
+      </div>
+         
+        
+          <script
+          src="https://code.jquery.com/jquery-3.4.1.js"
+          integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+          crossorigin="anonymous"></script>       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> 
+         <!-- Latest compiled and minified JavaScript -->
+          <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+  <!-- Latest compiled and minified Locales -->
+      <script>
+              $( document ).ready(function() {
+             
+  
+          var $table = $('#table')
+          var b = {{book|tojson}}
+          
+          $(function() {
+    
+                  $table.bootstrapTable({data: b})
+              })
+          
+        
+                      });
+          </script>
     </body>
 </html>
 
