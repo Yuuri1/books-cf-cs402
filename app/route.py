@@ -66,8 +66,7 @@ def home():
         predict,rated=runRecommender(fileBook,fileRating,current_user.user_id)
         suggested=json.loads(predict)
         rated=json.loads(rated)
-        return render_template('home.html', title='Home',form=form,suggested=suggested,rated=rated)
-    #return render_template('home.html', title='Home')
+    return render_template('home.html', title='Home',form=form,suggested=suggested,rated=rated)
 
 @app.route('/account',methods=['GET','POST'])
 @login_required
