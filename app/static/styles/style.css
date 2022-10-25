@@ -28,98 +28,6 @@ img {
   height: 150px;
   width: 150px;  
 }
-.wrapper .left,
-.wrapper .right {
-  width: 100%;
-  height: 50vh;
-  text-align:center;
-  overflow: hidden;
-  
-}
-
-.wrapper .image {
-  width:100%;
-  height:100%;
-
-}
-
-.recommend {
-  background: url('../images/laptop0.jpg');
-
-}
-
-.books {
-  background: url('../images/library.jpg');
-
-}
-button.test-btn{
-  font-size: 18px;
-  padding: 15px;
-  border: 2px solid rgb(0, 0, 0);
-  color: rgb(5, 5, 5);
-  display: block;
-  margin: 50px auto;
-  background: black;
-  color: white;
-  transition: .2s ease-in-out 0s;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 1em 2em;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1em;
-  }
-
-button.test-btn:hover{
-  cursor: pointer;
-  transform: scale(1.25);
-  background: #FFF;
-  color: #000;
-  text-decoration: none;
-}
-
-.wrapper .left .caption{
-  z-index: 10;
-  padding: 280px 250px;
-  color:black;
-  text-align: center;
-  font-family: serif;
-  font-weight: bold;
-
-}
-
-.wrapper .right .caption{
-  position:relative;
-  z-index: 10;
-  padding: 250px 250px;
-  color:black;
-  text-align: center;
-  font-family: serif;
-  font-weight: bold;
-
-}
-
-.wrapper .caption h1{
-  text-transform: uppercase;
-  letter-spacing:0.25em;
-  font-weight: bold;
-}
-
-@media screen and (min-width:1200px){
-  .wrapper{
-    display:flex;
-  }
-  .wrapper .left{
-    width: 65%;
-    height: 100vh;
-  }
-  .wrapper .right {
-    width: 50%;
-    height: 100vh;
-  }
-  
-}
-
 
 /***Dashboard***/
 
@@ -253,7 +161,7 @@ position: relative;
   background-color: #f3f3f3;  
 }
 .content-table tbody tr:nth-of-type(odd){
-  background-color: #b9b9b9;
+  background-color: #e0e0e0;
 }
 
 .content-table tbody tr:last-of-type{
@@ -366,4 +274,40 @@ position: relative;
 	text-align: center;
 }
 
+}
+
+/* The hero image */
+.banner-area {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/library.jpg);
+
+  /* Set a specific height */
+  height: 30vh;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  margin: 0 0 0 200px;
+}
+
+/* Place text in the middle of the image */
+.banner-text{
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 49.5%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.banner-text input{
+  background-color: #1ea9c2;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
 }
