@@ -30,14 +30,8 @@
         <li>
           <a href="{{url_for("recommend")}}" class="active">
             <i class='bx bxs-star'></i>
-              <span class="links_name">Recommend</span>
+              <span class="links_name">Rate</span>
           </a>
-          </li>
-          <li>
-              <a href="{{url_for('book')}}" class="active">
-                  <i class='bx bx-book' ></i>
-                  <span class="links_name">Books</span>
-              </a>
           </li>
           <li>
             <a href="{{url_for('account')}}" class="active">
@@ -59,28 +53,81 @@
           </li>
       </ul>
       </div>
-         <div class="wrapper">
-            <div class="side left">
-                <div class="image recommend">
-                    <div class="caption">
-                        <h1> Recommend </h1>
-                        <p> Already have a book in mind? </p>
-                        <p> Check your recommendations here. </p>
-                        <a href="{{url_for('recommend')}}"><button  class="test-btn" >Get Started</button></a>
-                    </div>
-                </div>
-            </div>
-            <div class="side right">
-                <div class="image books">
-                    <div class="caption">
-                        <h1> Books </h1>
-                        <p> Looking for a book?</p>
-                        <p> Check our dataset of books and see what piques your interest. </p>
-                        <a href="{{url_for('book')}}"><button  class="test-btn">Get Started</button></a>
-                    </div>
-                </div>
-            </div>
-         </div>
+      <div class="banner-area">
+        <div class="banner-text">
+            <h2>Welcome to Book Recommender System</h2>
+            <h3>Collaborative Filtering Algorithm</h3>
+    
+            <form class='text-center'action="{{url_for("recommend")}}">
+                <input class="btn btn-outline-info" type="submit" value="Rate a Book" >
+            </form>
+        </div>
+      </div>
+
+      
+      <div class="container"id="value" style="padding: 50px 50px; margin:0 0 0 300px;" >
+        
+
+        <h6 class="text-center">My rated books :</h6>
+        <table class="content-table" id="ratedtable">
+          <tbody>
+                <thead>
+                  <tr>
+                    <th data-field="book_id">Book Id</th>
+                    <th data-field="original_title">Title</th>
+                    <th data-field="genre">Genre</th>
+                    <th data-field="rating">My Rating</th>
+                  </tr>
+                </thead>
+            </tbody>
+          </table>
+        <h6 class="text-center mt-5">My Top 20 Recommended books : </h6>
+        <table class="content-table" id="suggestedtable">
+            <tbody>
+                <thead>
+                  
+                  <tr>
+                    <th data-field="book_id">Book Id</th>
+                    <th data-field="original_title">Title</th>
+                    <th data-field="genre">Genre</th>
+                  </tr>
+                
+                </thead>
+            </tbody>
+          </table>
+            
+      </div>
+        <hr>
+        </section>
+       
+      
+        <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> 
+       <!-- Latest compiled and minified JavaScript -->
+        <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+      
+        <script>
+            $( document ).ready(function() {
+
+            var $rated = $('#ratedtable')
+            var $suggested = $('#suggestedtable')
+
+        var c = {{suggested|tojson}}
+        var b= {{rated|tojson}}
+
+        
+        $(function() {
+  
+                $rated.bootstrapTable({data: b})
+                $suggested.bootstrapTable({data: c})
+            })
+        
+      
+                });
+        </script>
     </body>
 </html>
        
