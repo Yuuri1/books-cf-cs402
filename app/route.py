@@ -45,28 +45,27 @@ def login():
 
     return render_template('login.html',title='Login',form=form)
 
-@app.route('/home',methods=['POST'])
+@app.route('/home')
 @login_required
 def home():
-    if request.method  != "POST":
-        available=False
-        fileRating = os.path.join(app.static_folder, 'ratings.json')
-        fileBook=os.path.join(app.static_folder, 'books.json')
-
-        with open(fileRating) as f:
-                dataRating = json.load(f)
-        for i in range(len(dataRating)):
-            if dataRating[i]["user_id"]==current_user.user_id:
-                print(dataRating[i]["user_id"])
-                available=True
-            if available==False:
-                suggested=[{"book_id":0,"original_title":"No rating, data unavailable","genre":"-"}]
-                rated=[{"book_id":0,"original_title":"No rating, data unavailable","genre":"-"}]
-        if available==True:
-            predict,rated=runRecommender(fileBook,fileRating,current_user.user_id)
-            suggested=json.loads(predict)
-            rated=json.loads(rated)
-    return render_template('home.html', title='Home',form=form,suggested=suggested,rated=rated)
+    available=False
+    fileRating = os.path.join(app.static_folder, 'ratings.json')
+    fileBook=os.path.join(app.static_folder, 'books.json')
+        
+    with open(fileRating) as f:
+            dataRating = json.load(f)
+    for i in range(len(dataRating)):
+        if dataRating[i]["user_id"]==current_user.user_id:
+            print(dataRating[i]["user_id"])
+            available=True
+        if available==False:
+            suggested=[{"book_id":0,"original_title":"No rating, data unavailable","genre":"-"}]
+            rated=[{"book_id":0,"original_title":"No rating, data unavailable","genre":"-"}]
+    if available==True:
+        predict,rated=runRecommender(fileBook,fileRating,current_user.user_id)
+        suggested=json.loads(predict)
+        rated=json.loads(rated)
+    return render_template('home.html', title='Home',suggested=suggested,rated=rated)
 
 @app.route('/account',methods=['GET','POST'])
 @login_required
