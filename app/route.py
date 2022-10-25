@@ -116,7 +116,8 @@ def recommend():
     form=RatingForm()
     
     if request.method == 'GET':
-            with open('/booksrecommendation/booksrecommender/app/static/books.json', 'r', encoding="utf8") as blog_file:
+            filename = os.path.join(app.static_folder, 'books.json')
+            with open(filename) as blog_file:
                 book = json.load(blog_file)
     if request.method == 'POST':
         print(form.book_id.data)
