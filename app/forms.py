@@ -1,13 +1,13 @@
 import re
 from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,SubmitField,BooleanField,IntegerField
-from wtforms.validators import DataRequired,Length,Email,EqualTo,ValidationError,NumberRange
+from wtforms.validators import DataRequired,Length,Email,EqualTo,ValidationError,NumberRange, Regexp
 from flask_login import current_user
 
 from app.models import User
 class RegistrationForm(FlaskForm):
     email= StringField('Email:',validators=[DataRequired(),Email()])
-    password = PasswordField('Password:',validators=[DataRequired(), Length(min= 8)])
+    password = PasswordField('Password:',validators=[DataRequired(), Length(min= 8), Regexp('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$',message="Please input 1 uppercase, 1 lowercase, and 1 numbers.")])
     confirm_password = PasswordField('Confirm Password:',validators=[DataRequired(),EqualTo('password')])
 
     submit=SubmitField('Sign Up')
